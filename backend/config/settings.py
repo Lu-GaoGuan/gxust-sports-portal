@@ -46,6 +46,9 @@ if not DEBUG and SECRET_KEY.startswith("django-insecure-"):
     )
 
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
+render_external_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "").strip()
+if render_external_hostname and render_external_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_external_hostname)
 
 
 # Application definition

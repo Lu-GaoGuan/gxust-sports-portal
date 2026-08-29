@@ -22,21 +22,15 @@ Render 免费套餐、数据库免费期限、休眠和额度政策可能变化�
 - Root directory：仓库根目录。
 - Build command：`npm --prefix frontend ci && npm --prefix frontend run build`
 - Build output directory：`frontend/dist`
-- Environment variable：`VITE_API_BASE_URL=https://你的-render-api域名/api`
+- Runtime environment variable：`RENDER_API_ORIGIN=https://你的-render-api域名`
 
-首次部署前应先获得 Render 后端域名，然后将该域名写入 Cloudflare Pages 环境变量并重新部署。
+仓库内的 Pages Function 会把同域 `/api/*` 请求转发到 Render。前端生产构建默认使用 `/api`，浏览器不直接跨域访问 Render，因此无需配置 Cloudflare 域名的 CORS/CSRF 白名单。`RENDER_API_ORIGIN` 只填写 HTTPS 域名，不包含 `/api`，并同时配置到 Production 和 Preview 环境。
 
 ## Render Django API
 
 仓库根目录包含 `render.yaml`。在 Render 选择 Blueprint/从 GitHub 创建服务并选中此仓库。
 
-需要填写：
-
-- `DJANGO_ALLOWED_HOSTS`：Render 服务域名，不包含 `https://`。
-- `CORS_ALLOWED_ORIGINS`：Cloudflare Pages 完整 HTTPS 地址。
-- `CSRF_TRUSTED_ORIGINS`：Cloudflare Pages 和 Render 后台的完整 HTTPS 地址，用英文逗号分隔。
-
-部署自动安装依赖、执行数据库迁移、收集静态文件，并在数据库为空时导入初始内容。
+Render 自动提供 `RENDER_EXTERNAL_HOSTNAME`，Django 会将其加入 `ALLOWED_HOSTS`。Blueprint 不再要求填写 Cloudflare 的 CORS/CSRF 白名单。部署自动安装依赖、执行数据库迁移、收集静态文件，并在数据库为空时导入初始内容。
 
 创建管理员可在 Render Shell 执行：
 
