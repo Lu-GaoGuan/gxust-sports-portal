@@ -1,0 +1,58 @@
+# Environment and secrets
+.env
+.env.local
+.env.production
+.env.*.local
+!.env.example
+!.env.production.example
+sports-portal-deploy.tar.gz
+sports-portal-deploy.tar.gz.sha256
+deploy/certs/*
+!deploy/certs/.gitkeep
+deploy/nginx/https.conf
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+backend/media/*
+!backend/media/activities/
+backend/media/activities/*
+!backend/media/activities/confirmed/
+!backend/media/activities/confirmed/**
+backend/staticfiles/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# Editors and operating systems
+.vscode/
+.spec-workflow/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local logs and temporary files
+tmp/
+
+# User-provided raw materials and visual references
+部门照片/
+web-ai-Banana-Cat-main/
+assets_raw/*
+!assets_raw/README.md
+
+# Original requirements and policy documents stay local
+*.docx
+*.xlsx
+*.pptx
+*.pdf
+
+# Office temporary files
+~$*

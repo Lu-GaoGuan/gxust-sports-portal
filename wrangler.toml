@@ -1,0 +1,5 @@
+name = "gxust-sports-portal"
+pages_build_output_dir = "frontend/dist"
+
+[vars]
+VITE_API_BASE_URL = ""

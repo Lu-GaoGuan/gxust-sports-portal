@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title description">
+  <title id="title">图片待补充</title>
+  <desc id="description">体育部网站统一图片占位图</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf4ff"/>
+      <stop offset="1" stop-color="#d7e9fb"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#0867d8" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#background)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <circle cx="400" cy="255" r="76" fill="#0867d8" fill-opacity=".12"/>
+  <path d="M355 255h90M400 210v90" stroke="#0867d8" stroke-width="14" stroke-linecap="round" opacity=".5"/>
+  <text x="400" y="380" text-anchor="middle" fill="#315f91" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700">图片待补充</text>
+</svg>
