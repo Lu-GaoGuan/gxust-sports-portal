@@ -47,11 +47,11 @@ class HealthCheckTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual([item["name"] for item in response.data], ["展示成员"])
 
-    def test_message_submission_is_pending_and_not_public(self):
+    def test_message_submission_is_immediately_public(self):
         response = self.client.post("/api/messages/", {"nickname": "新生", "content": "想加入体育部"})
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Message.objects.get().review_status, Message.ReviewStatus.PENDING)
-        self.assertEqual(self.client.get("/api/messages/").data, [])
+        self.assertEqual(Message.objects.get().review_status, Message.ReviewStatus.APPROVED)
+        self.assertEqual(self.client.get("/api/messages/").data[0]["nickname"], "新生")
 
     def test_approved_message_is_public(self):
         Message.objects.create(nickname="同学", content="欢迎大家", review_status=Message.ReviewStatus.APPROVED)

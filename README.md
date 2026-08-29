@@ -1,6 +1,6 @@
 # 广西科技大学电子工程学院团委学生会体育部迎新网站
 
-面向 2026 级新生的体育部宣传、迎新与招新网站。前端使用 Vue 3，后端使用 Django REST Framework，内容通过 Django Admin 管理，匿名留言采用先审后发。
+面向 2026 级新生的体育部宣传、迎新与招新网站。前端使用 Vue 3，本地后端使用 Django REST Framework，云端后端使用 Cloudflare Pages Functions + D1。匿名留言提交后立即公开，管理员可在受口令保护的页面软删除。
 
 ## 环境
 
@@ -34,7 +34,7 @@
 - API 健康检查：`http://127.0.0.1:8000/api/health/`
 - SimpleUI 管理后台：`http://127.0.0.1:8000/admin/`
 
-公开接口包括 `/api/profile/`、`/api/members/`、`/api/activities/`、`/api/faqs/` 和 `/api/messages/`。留言提交后默认为待审核，仅审核通过的留言会在前台公开。
+公开接口包括 `/api/profile/`、`/api/members/`、`/api/activities/`、`/api/faqs/` 和 `/api/messages/`。留言提交后立即公开，并保留内容校验和提交频率限制。
 
 项目暂未创建超级管理员。需要时运行：
 
@@ -68,8 +68,9 @@ npm run build
 
 ## 云端部署
 
-- 免费展示优先：Cloudflare Pages（Vue 前端）。
-- 完整功能演示：Cloudflare Pages + Render（Django API/PostgreSQL）。
+- 当前免费方案：Cloudflare Pages（Vue 前端）+ Pages Functions（REST API）+ D1（持久数据）。
+- 生产前端通过同域 `/api/` 访问 Functions，无需 Render、PostgreSQL、跨域白名单或银行卡。
+- Django + SQLite 保留用于本地内容管理、测试和数据导出，不是当前云端运行依赖。
 - 正式长期运行：腾讯云轻量服务器或其他具备持久数据库与对象存储的环境。
 
 部署说明：

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import ActivitiesView from '../views/ActivitiesView.vue'
+import AdminCommentsView from '../views/AdminCommentsView.vue'
 import CurrentTeamView from '../views/CurrentTeamView.vue'
 import DepartmentView from '../views/DepartmentView.vue'
 import FaqView from '../views/FaqView.vue'
@@ -22,6 +23,7 @@ const router = createRouter({
     { path: '/activities', name: 'activities', component: ActivitiesView },
     { path: '/faq', name: 'faq', component: FaqView },
     { path: '/messages', name: 'messages', component: MessagesView },
+    { path: '/admin-comments', name: 'admin-comments', component: AdminCommentsView },
   ],
   scrollBehavior() { return { top: 0 } },
 })

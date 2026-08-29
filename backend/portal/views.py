@@ -69,6 +69,9 @@ class MessageListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Message.objects.filter(review_status=Message.ReviewStatus.APPROVED)
 
+    def perform_create(self, serializer):
+        serializer.save(review_status=Message.ReviewStatus.APPROVED)
+
     def get_throttles(self):
         if self.request.method == "POST":
             return [ScopedRateThrottle()]

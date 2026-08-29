@@ -20,6 +20,14 @@ export const portalApi = {
   getFaqs: () => api.get('/faqs/').then(({ data }) => data),
   getMessages: () => api.get('/messages/').then(({ data }) => data),
   submitMessage: (payload) => api.post('/messages/', payload).then(({ data }) => data),
+  getAdminMessages: (token) => api
+    .get('/admin/messages/', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(({ data }) => data),
+  deleteAdminMessage: (id, token) => api.delete(`/admin/messages/${id}/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  }),
 }
 
 export function getApiErrorMessage(error, fallback = '请求失败，请稍后重试。') {

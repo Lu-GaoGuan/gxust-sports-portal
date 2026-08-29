@@ -84,7 +84,7 @@
 
 `GET /messages/`
 
-只返回审核状态为 `approved` 的留言。
+只返回当前公开且未被管理员软删除的留言。
 
 ```json
 [
@@ -112,7 +112,14 @@
 {"nickname": "新生", "content": "想了解体育部招新安排。"}
 ```
 
-成功返回 `201 Created`。新留言固定进入待审核状态，响应不会提供修改审核状态的字段。默认按来源 IP 限制为每小时 5 次，超过限制返回 `429 Too Many Requests`；可通过环境变量 `MESSAGE_SUBMISSION_RATE` 调整。
+成功返回 `201 Created`，新留言立即公开。默认按来源 IP 限制为每小时 5 次，超过限制返回 `429 Too Many Requests`；Django 本地后端可通过环境变量 `MESSAGE_SUBMISSION_RATE` 调整。
+
+Cloudflare 云端提供受 `ADMIN_API_TOKEN` 保护的管理接口：
+
+- `GET /admin/messages/`：读取当前公开留言。
+- `DELETE /admin/messages/{id}/`：软删除指定留言并写入操作记录。
+
+管理员页面地址为 `/admin-comments`，不会在公共导航中显示。
 
 校验失败返回 `400 Bad Request`：
 

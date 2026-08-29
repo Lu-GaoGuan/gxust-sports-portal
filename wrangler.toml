@@ -1,3 +1,8 @@
 name = "gxust-sports-portal"
 compatibility_date = "2026-08-28"
 pages_build_output_dir = "frontend/dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gxust-sports-portal-db"
+database_id = "2e92f6b7-7109-49db-a8a1-9352e3aff57f"
